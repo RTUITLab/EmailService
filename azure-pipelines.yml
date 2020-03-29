@@ -11,7 +11,7 @@ steps:
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
-    arguments: src/
+    arguments: 'src/'
     feedsToUse: 'select'
     versioningScheme: 'off'
 
