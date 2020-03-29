@@ -11,10 +11,9 @@ steps:
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
-    arguments: 'src/'
+    projects: 'src'
     feedsToUse: 'select'
     versioningScheme: 'off'
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
   inputs:
