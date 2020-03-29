@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 EmailService/EmailService/appsettings.Secret.json
+
+src/EmailService/appsettings.Secret.json
