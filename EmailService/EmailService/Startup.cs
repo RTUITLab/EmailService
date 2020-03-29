@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using EmailService.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Models.Options;
 
 namespace EmailService
@@ -37,6 +32,11 @@ namespace EmailService
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHeaderAuthorization(Configuration
+                .GetSection(nameof(HeaderAuthorizationOptions))
+                .Get<HeaderAuthorizationOptions>()
+                .Key);
 
             app.UseRouting();
 
