@@ -2,15 +2,16 @@
 Email micro service.  
 It's a simple service just to send emails.
 
-## Requriments
+## Requirements
 
 .Net Core 3.1
 
 ## Configuration
 
-```appsettings.json``` must be placed to src/EmailService folder
+In ```src/EmailService/appsettings.json``` file add this configuration
 ```js
 {
+  // configuration omitted
   "EmailSenderOptions": {
     "Email": "email address from which your service will send emails. example@gmail.com",
     "Password": "password for email address from which your service will send emails. superhardpassword",
@@ -20,6 +21,7 @@ It's a simple service just to send emails.
   "HeaderAuthorizationOptions": {
     "Key": "some random key for Header Authoriztion"
   }
+  // configuration omitted
 }
 ```
 ## Run
