@@ -2,20 +2,20 @@
 Email micro service.  
 It's a simple service just to send emails.
 
-## Prerequriments
+## Requriments
 
 .Net Core 3.1
 
 ## Configuration
 
-```appsettings.Secret.json``` must be placed to src/EmailService folder
-```json
+```appsettings.json``` must be placed to src/EmailService folder
+```js
 {
   "EmailSenderOptions": {
     "Email": "email address from which your service will send emails. example@gmail.com",
     "Password": "password for email address from which your service will send emails. superhardpassword",
     "SmtpHost": "smtp server or some another host. smtp.mail.ru",
-    "SmtpPort": 25
+    "SmtpPort": 25 //Use your smtp port
   },
   "HeaderAuthorizationOptions": {
     "Key": "some random key for Header Authoriztion"
@@ -33,7 +33,7 @@ API will be available on [localhost:5000](http://localhost:5000)
 
 There is one available POST request on url /api/email/send.  
 Request body (__all__ fields are __required__!):  
-```json
+```js
 {
   "Email": "email address to which send email. test@test.com",
   "Subject": "email's subject. My first Test subject",
