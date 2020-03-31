@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailService", "EmailServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{F3C853FD-5509-4803-AEF4-820BF87F640E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{090F3095-5A51-436B-B539-46041D63E1A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{090F3095-5A51-436B-B539-46041D63E1A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicAPI", "PublicAPI\PublicAPI.csproj", "{D092C687-8707-4D0C-AD8A-F4F1FB1718F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicAPI", "PublicAPI\PublicAPI.csproj", "{D092C687-8707-4D0C-AD8A-F4F1FB1718F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService.LogsViewer", "EmailService.LogsViewer\EmailService.LogsViewer.csproj", "{5AD09402-E028-4541-B765-9253BE73F3C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D092C687-8707-4D0C-AD8A-F4F1FB1718F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D092C687-8707-4D0C-AD8A-F4F1FB1718F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D092C687-8707-4D0C-AD8A-F4F1FB1718F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AD09402-E028-4541-B765-9253BE73F3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AD09402-E028-4541-B765-9253BE73F3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AD09402-E028-4541-B765-9253BE73F3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AD09402-E028-4541-B765-9253BE73F3C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

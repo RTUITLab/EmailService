@@ -1,4 +1,5 @@
 using EmailService.Middlewares;
+using EmailService.Services.Logs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,8 @@ namespace EmailService
             services.AddEmailSender(Configuration
                 .GetSection(nameof(EmailSenderOptions))
                 .Get<EmailSenderOptions>());
+
+            services.AddSingleton<ILogsWebSocketHandler>(LogsWebSocketHandler.Instance);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +45,13 @@ namespace EmailService
                 .GetSection(nameof(HeaderAuthorizationOptions))
                 .Get<HeaderAuthorizationOptions>()
                 .Key);
+
+            app.UseWebSockets();
+
+            var emailSender = Configuration
+                .GetSection(nameof(EmailSenderOptions))
+                .Get<EmailSenderOptions>();
+            app.UseLogsMiddleware("/api/logsStream", emailSender.Key);
 
             app.UseRouting();
 
