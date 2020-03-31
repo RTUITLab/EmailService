@@ -6,6 +6,9 @@ pool:
 
 name: $(BuildID)
 
+variables:
+  nuget_package_number: '1.0.$(Build.BuildId)'
+
 steps:
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
@@ -14,6 +17,13 @@ steps:
     projects: 'src'
     feedsToUse: 'select'
     versioningScheme: 'off'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'src/EmailService.Client/Client.csproj;src/PublicAPI/PublicAPI.csproj'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'nuget_package_number'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish'
   inputs:
