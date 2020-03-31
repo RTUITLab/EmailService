@@ -17,7 +17,7 @@ jobs:
     displayName: 'pack projects'
     inputs:
       command: 'pack'
-      packagesToPack: 'src/EmailService.Client/Client.csproj;src/PublicAPI/PublicAPI.csproj'
+      packagesToPack: 'src/Client/Client.csproj;src/PublicAPI/PublicAPI.csproj'
       versioningScheme: 'byEnvVar'
       versionEnvVar: 'nuget_package_number'
   - task: PublishBuildArtifacts@1

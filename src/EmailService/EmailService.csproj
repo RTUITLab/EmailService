@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EmailService.Client\Client.csproj" />
+    <ProjectReference Include="..\Client\Client.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
