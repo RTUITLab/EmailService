@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>RTUITLab.EmailService.PublicAPI</RootNamespace>
+    <PackageId>RTUITLab.EmailService.PublicAPI</PackageId>
+    <Authors>RTUITLab</Authors>
+    <Product>EmailService.PublicAPI</Product>
+    <AssemblyName>RTUITLab.EmailService.PublicAPI</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>
