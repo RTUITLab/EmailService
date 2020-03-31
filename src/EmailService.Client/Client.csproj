@@ -8,6 +8,9 @@
     <Authors>RTUITLab</Authors>
     <Product>EmailService.Client</Product>
     <AssemblyName>RTUITLab.EmailService.Client</AssemblyName>
+    <Description>Client for sending emails though the EmailService</Description>
+    <PackageProjectUrl>https://github.com/RTUITLab/EmailService</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RTUITLab/EmailService</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

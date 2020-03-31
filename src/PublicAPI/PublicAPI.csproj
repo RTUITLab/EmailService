@@ -7,6 +7,9 @@
     <Authors>RTUITLab</Authors>
     <Product>EmailService.PublicAPI</Product>
     <AssemblyName>RTUITLab.EmailService.PublicAPI</AssemblyName>
+    <Description>Library with classes for public API for EmailService</Description>
+    <PackageProjectUrl>https://github.com/RTUITLab/EmailService</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RTUITLab/EmailService</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
