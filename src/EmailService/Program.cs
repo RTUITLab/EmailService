@@ -15,11 +15,11 @@ namespace EmailService
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.ConfigureLogging(cfg => cfg.AddProvider(new WebSocketLoggerProvider()))
+                .ConfigureLogging(cfg => cfg.AddProvider(new WebSocketLoggerProvider()))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.ConfigureAppConfiguration(cfg => cfg.AddJsonFile("appsettings.Secret.json"));
-                    webBuilder.ConfigureLogging(logging => logging.AddProvider(new WebSocketLoggerProvider()));
+                    // webBuilder.ConfigureLogging(logging => logging.AddProvider(new WebSocketLoggerProvider()));
                     webBuilder.UseStartup<Startup>();
                 });
     }

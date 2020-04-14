@@ -41,17 +41,17 @@ namespace EmailService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHeaderAuthorization(Configuration
-                .GetSection(nameof(HeaderAuthorizationOptions))
-                .Get<HeaderAuthorizationOptions>()
-                .Key);
-
             app.UseWebSockets();
 
             var emailSender = Configuration
                 .GetSection(nameof(EmailSenderOptions))
                 .Get<EmailSenderOptions>();
             app.UseLogsMiddleware("/api/logsStream", emailSender.Key);
+
+            app.UseHeaderAuthorization(Configuration
+                .GetSection(nameof(HeaderAuthorizationOptions))
+                .Get<HeaderAuthorizationOptions>()
+                .Key);
 
             app.UseRouting();
 
