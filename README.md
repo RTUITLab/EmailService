@@ -53,3 +53,49 @@ curl --header "Content-Type: application/json" \
   --data '{"email":"example@mail.ru","subject":"Confirm your email", "body":"Please visit this <a>link</a> to confirm your email."}' \
   http://localhost:5000/api/email/send
 ```
+
+## How to use RTUITLab.EmailService.Client package
+
+1. Install [RTUITLab.EmailService.Client package](https://dev.azure.com/rtuitlab/RTU%20IT%20Lab/_packaging?_a=package&feed=ITLab&package=RTUITLab.EmailService.Client&protocolType=NuGet) to your ASP.Net Core project
+2. Extend your appsettings.json file with following code:  
+```js
+{
+  // configuration omitted
+  "EmailSenderOptions": {
+    "BaseAddress": "url to your email service that you've created upper. http://localhost:5000",
+    "Key": "some random key for Header Authoriztion. Check instructions above"
+  }
+  // configuration omitted
+}
+```
+3. Edit Startup.cs file:
+```c#
+// Add email service
+services.AddEmailSender(Configuration
+    .GetSection(nameof(EmailSenderOptions))
+    .Get<EmailSenderOptions>());
+```
+4. By following code you'll send request to your email service. Email service will deliver emails:
+```c#
+RTUITLab.EmailService.Client.IEmailSender sender;
+await sender.SendEmailAsync("test@test.com", "Email letter subject", "<h1>Html body</h1>")
+```
+```c#
+// Example with some random controller
+public class EmailSendController : ControllerBase
+{
+    private readonly RTUITLab.EmailService.Client.IEmailSender sender;
+
+    public EmailSender(RTUITLab.EmailService.Client.IEmailSender sender)
+    {
+        this.sender = sender;
+        DoStuff();
+    }
+
+    private async Task DoStuff()
+    {
+      // await sender.SendEmailAsync("email to send", "subject of email", "html body - message to send via email");
+      await sender.SendEmailAsync("test@test.com", "Email letter subject", "<h1>Html body</h1>");
+    }
+}
+```
