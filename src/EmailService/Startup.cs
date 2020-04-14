@@ -1,10 +1,12 @@
 using EmailService.Middlewares;
+using EmailService.Services.Logs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models.Options;
+using RTUITLab.EmailService.Client;
 
 namespace EmailService
 {
@@ -22,7 +24,13 @@ namespace EmailService
         {
             services.AddControllers();
 
-            services.Configure<EmailSenderOptions>(Configuration.GetSection(nameof(EmailSenderOptions)));
+            services.Configure<EmailServiceOptions>(Configuration.GetSection(nameof(EmailServiceOptions)));
+
+            services.AddEmailSender(Configuration
+                .GetSection(nameof(EmailSenderOptions))
+                .Get<EmailSenderOptions>());
+
+            services.AddSingleton<ILogsWebSocketHandler>(LogsWebSocketHandler.Instance);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +40,13 @@ namespace EmailService
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseWebSockets();
+
+            var emailSender = Configuration
+                .GetSection(nameof(EmailSenderOptions))
+                .Get<EmailSenderOptions>();
+            app.UseLogsMiddleware("/api/logsStream", emailSender.Key);
 
             app.UseHeaderAuthorization(Configuration
                 .GetSection(nameof(HeaderAuthorizationOptions))

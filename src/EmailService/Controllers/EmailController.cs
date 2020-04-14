@@ -13,9 +13,9 @@ namespace EmailService.Controllers
     [ApiController]
     public class EmailController : ControllerBase
     {
-        private readonly EmailSenderOptions options;
+        private readonly EmailServiceOptions options;
 
-        public EmailController(IOptions<EmailSenderOptions> emailSenderOptions)
+        public EmailController(IOptions<EmailServiceOptions> emailSenderOptions)
         {
             this.options = emailSenderOptions.Value;
         }

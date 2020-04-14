@@ -1,6 +1,6 @@
 ﻿namespace Models.Options
 {
-    public class EmailSenderOptions
+    public class EmailServiceOptions
     {
         public string Email { get; set; }
         public string Password { get; set; }
