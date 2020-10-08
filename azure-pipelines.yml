@@ -30,34 +30,29 @@ stages:
 
   - job: Backend
     steps:
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet restore'
+    - task: Cake@2
       inputs:
-        command: 'restore'
-        projects: 'src'
-        feedsToUse: 'select'
-        versioningScheme: 'off'
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet publish'
-      inputs:
-        command: publish
-        publishWebProjects: false
-        projects: src/EmailService/EmailService.csproj
-        arguments: '--no-restore -o $(Build.ArtifactStagingDirectory)' 
-        zipAfterPublish: false
-        modifyOutputPath: false
-    - task: PublishBuildArtifacts@1
-      displayName: 'Publish Artifact: emailservice-build'
-      inputs:
-        ArtifactName: 'emailservice-build'
-    - task: CopyFiles@2
-      displayName: 'copy deploy artifact'
-      inputs:
-        SourceFolder: 'deploy'
-        Contents: '**'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-        CleanTargetFolder: true
-    - task: PublishBuildArtifacts@1
-      displayName: 'Publish Artifact: emailservice-deploy'
-      inputs:
-        ArtifactName: 'emailservice-deploy'
+        script: 'build.cake'
+        target: 'PublishEmailService'
+        verbosity: 'Verbose'
+    - publish: deploy
+      artifact: emailservice-build
+
+- stage: pack
+  displayName: Pack in docker image
+  jobs:
+    - job: pack_service
+      displayName: Pack service
+      steps:
+        - download: current
+          artifact: emailservice-build
+        - task: Docker@2
+          inputs:
+            containerRegistry: 'rtuitlab connection by admin'
+            repository: 'rtuitlab/emailservice'
+            command: 'buildAndPush'
+            Dockerfile: '$(Pipeline.Workspace)/emailservice-build/Dockerfile'
+            buildContext: '$(Pipeline.Workspace)/emailservice-build'
+            tags: |
+              $(Build.BuildId)
+              latest
