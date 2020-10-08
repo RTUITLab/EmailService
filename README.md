@@ -1,10 +1,31 @@
-## EmailService
+# EmailService
 Email micro service.  
 It's a simple service just to send emails.
 
 ## Requirements
 
 .Net Core 3.1
+
+## Run from docker images
+
+1. Create and fill `.env` file
+```ini
+SENDER_EMAIL=sender account email
+SENDER_PASSWORD=sender account password
+SMTP_HOST=sender smtp port
+SMTP_PORT=sender smtp port
+```
+
+2. Pull latest docker image
+```bash
+docker-compose pull
+```
+
+3. Run service
+```
+docker-compose up
+```
+Now you can send requests to localhost:5000, authorization header value placed in `src/EmailService/appsettings.Development.json`. See [How to use](#how-to-use) for api format.
 
 ## Configuration
 
@@ -20,7 +41,8 @@ In ```src/EmailService/appsettings.json``` file add this configuration
   },
   "HeaderAuthorizationOptions": {
     "Key": "some random key for Header Authoriztion"
-  }
+  },
+  "LOGS_ACCESS_TOKEN": "some token for access to logs via websocket"
   // configuration omitted
 }
 ```

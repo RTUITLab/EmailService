@@ -18,7 +18,8 @@ namespace EmailService
                 .ConfigureLogging(cfg => cfg.AddProvider(new WebSocketLoggerProvider()))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureAppConfiguration(cfg => cfg.AddJsonFile("appsettings.Secret.json"));
+                    webBuilder.ConfigureAppConfiguration(cfg => cfg
+                        .AddJsonFile("appsettings.Secret.json", optional: true));
                     // webBuilder.ConfigureLogging(logging => logging.AddProvider(new WebSocketLoggerProvider()));
                     webBuilder.UseStartup<Startup>();
                 });

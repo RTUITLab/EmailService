@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  email-service:
+    image: rtuitlab/emailservice
+    environment:
+      - EmailServiceOptions__Email=${SENDER_EMAIL?place sender email}
+      - EmailServiceOptions__Password=${SENDER_PASSWORD?place sender password}
+      - EmailServiceOptions__SmtpHost=${SMTP_HOST?place sender host}
+      - EmailServiceOptions__SmtpPort=${SMTP_PORT?place sender port}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 100M

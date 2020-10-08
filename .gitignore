@@ -354,3 +354,9 @@ EmailService/EmailService/appsettings.Secret.json
 src/EmailService/appsettings.Secret.json
 
 src/EmailService/docker-compose.yml
+
+deploy/emailservice-build
+
+.env
+# Cake tools
+tools

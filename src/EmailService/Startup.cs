@@ -26,10 +26,6 @@ namespace EmailService
 
             services.Configure<EmailServiceOptions>(Configuration.GetSection(nameof(EmailServiceOptions)));
 
-            services.AddEmailSender(Configuration
-                .GetSection(nameof(EmailSenderOptions))
-                .Get<EmailSenderOptions>());
-
             services.AddSingleton<ILogsWebSocketHandler>(LogsWebSocketHandler.Instance);
         }
 
@@ -43,10 +39,8 @@ namespace EmailService
 
             app.UseWebSockets();
 
-            var emailSender = Configuration
-                .GetSection(nameof(EmailSenderOptions))
-                .Get<EmailSenderOptions>();
-            app.UseLogsMiddleware("/api/logsStream", emailSender.Key);
+            var logsToken = Configuration.GetValue<string>("LOGS_ACCESS_TOKEN");
+            app.UseLogsMiddleware("/api/logsStream", logsToken);
 
             app.UseHeaderAuthorization(Configuration
                 .GetSection(nameof(HeaderAuthorizationOptions))
