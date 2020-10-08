@@ -2,6 +2,7 @@
 Email micro service.  
 It's a simple service just to send emails.
 
+[![Build Status](https://dev.azure.com/rtuitlab/RTU%20IT%20Lab/_apis/build/status/EmailService?branchName=master)](https://dev.azure.com/rtuitlab/RTU%20IT%20Lab/_build/latest?definitionId=102&branchName=master)
 ## Requirements
 
 .Net Core 3.1
