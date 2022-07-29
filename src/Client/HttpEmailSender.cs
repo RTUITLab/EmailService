@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RTUITLab.EmailService.PublicAPI.Requests;
 using System;
 using System.Net.Http;
 using System.Text;

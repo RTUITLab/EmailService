@@ -4,8 +4,8 @@ using MailKit.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Models.Requests;
 using Models.Options;
+using RTUITLab.EmailService.PublicAPI.Requests;
 
 namespace EmailService.Controllers
 {
@@ -19,7 +19,7 @@ namespace EmailService.Controllers
         {
             this.options = emailSenderOptions.Value;
         }
-
+        // TODO: extract send logic to separate service from HTTP Controller
         private async Task<string> SendEmailAsync(string email, string subject, string message)
         {
             MimeMessage mailMessage = new MimeMessage();

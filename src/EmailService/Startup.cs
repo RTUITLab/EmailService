@@ -1,4 +1,5 @@
 using EmailService.Middlewares;
+using EmailService.Services.Initialization;
 using EmailService.Services.Logs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace EmailService
             services.AddControllers();
 
             services.Configure<EmailServiceOptions>(Configuration.GetSection(nameof(EmailServiceOptions)));
+            services.AddHostedService<SmtpOptionsValidator>();
 
             services.AddSingleton<ILogsWebSocketHandler>(LogsWebSocketHandler.Instance);
         }
